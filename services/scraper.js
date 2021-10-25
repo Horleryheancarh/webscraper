@@ -5,8 +5,9 @@ const CronJob = require('cron').CronJob
 const { Post } = require('../models/newsModel')
 
 
-var job = new CronJob('* * * 6 * *', () => {
+var job = new CronJob('* 6 * * * *', () => {
     // TECHCHRUNCH
+    console.log('Started Job')
     request('https://techcrunch.com', (err, res, html) => {
         if (!err && res.statusCode == 200) {
             let source = 'TechCrunch'
@@ -44,6 +45,10 @@ var job = new CronJob('* * * 6 * *', () => {
         }
     })
     // 
+
+
+
+    console.log('Finished Job')
 })
 
 

@@ -6,13 +6,13 @@ const readPosts = async (req, res) => {
     try {
         let all = await Post.find()
 
-        if(all.length() != 0) {
-            res.json(all)
+        if(all.length === 0) {
+            res.status(300).json({ message: 'No Posts Found'})
         } else {
-            res.statusCode(300).json({ message: 'No Posts Found'})
+            res.json(all)
         }
     } catch (error) {
-        res.statusCode(500).json(error)
+        res.status(500).json(error)
     }
 }
 
@@ -21,15 +21,15 @@ const readPost = async (req, res) => {
     try {
         let id = req.params.id
 
-        let post = await Post.find({ id })
-
+        let post = await Post.findById({ _id: id })
+        
         if (post) {
             res.json(post)
         } else {
-            res.statusCode(300).json({ message: 'Post not Found'})
+            res.status(300).json({ message: 'Post not Found'})
         }
     } catch (error) {
-        res.statusCode(500).json(error)
+        res.status(500).json(error)
     }
 }
 
@@ -41,21 +41,25 @@ const createPost = async (req, res) => {
         let news = await Post.find({ title })
 
         if (news) {
-            res.statusCode(300).json({ message: 'Title exists' })
+            res.status(300).json({ message: 'Title exists' })
         } else {
             let news = await Post.create({ author, title, time, post })
 
             res.json({ mesaage: 'Post saved' })
         }
     } catch (error) {
-        res.statusCode(500).json(error)
+        res.status(500).json(error)
     }
 }
 
 // Update Post
+const updatePost = async (req, res) => {
 
+}
 
 // Delete Post
-
+const deletePost = async (req, res) => {
+    
+}
 
 module.exports = { readPosts, readPost, createPost, updatePost, deletePost }

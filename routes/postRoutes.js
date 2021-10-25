@@ -9,7 +9,7 @@ const Router = express.Router()
 Router.get('/post', readPosts)
 
 // Get Single Post
-Router.get('/post/id', readPost)
+Router.get('/post/:id', readPost)
 
 // Create Single Post
 Router.post('/post', createPost)

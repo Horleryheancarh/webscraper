@@ -1,0 +1,9 @@
+
+
+### GET ALL POSTS
+GET http://localhost:5000/post HTTP/1.1
+
+
+### GET SINGLE POST
+GET http://localhost:5000/post/6172186bc01fdadc4d4e9caf HTTP/1.1
+

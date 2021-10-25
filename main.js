@@ -24,15 +24,19 @@ connect(process.env.DB_URI, {
     process.exit(1)
 })
 
-
-// START CRON JOB
+// WEBSCRAPER
 job.start()
+
+
+// ROUTES
+app.use(require('./routes/postRoutes'))
 
 
 // START SERVER
 const start = async () => {
     try {
         app.listen(process.env.PORT, process.env.HOST)
+        console.log(`server started on ${process.env.HOST}:${process.env.PORT}`)
     } catch (error) {
         console.log(error)
     }
